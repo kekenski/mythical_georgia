@@ -3,31 +3,48 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --color-primary: #000000;
+  --color-secondary: #ff9100;
+  --color-accent: #8C8C8C;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+
+/* Ensure the video covers the entire viewport */
+.video-background {
+  position: fixed; /* Position the video behind everything else */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+  z-index: -1; /* Place behind all other content */
+  object-fit: cover; /* Ensure the video covers the screen without distortion */
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-uncial {
+  font-family: 'Uncial Antiqua', serif;
+}
+
+@keyframes unfurl {
+  0% {
+      transform: scaleY(0);
+      opacity: 0;
+  }
+  100% {
+      transform: scaleY(1);
+      opacity: 1;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.animate-unfurl {
+  animation: unfurl 0.6s ease-out forwards;
 }
